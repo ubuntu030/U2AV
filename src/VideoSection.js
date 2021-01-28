@@ -8,7 +8,7 @@ function VideoSection() {
 				<iframe src="https://www.youtube.com/embed/2J25YR3OcQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</section>
 			<section className="history-section">
-				search history
+				<div className="section-decs">search history</div>
 				<ul>
 					<li>1</li>
 					<li>2</li>

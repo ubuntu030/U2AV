@@ -4,16 +4,21 @@
   box-sizing: border-box;
 }
 
+$primary-color: #00baff;
+$primary-white: #fff;
+
 body {
-  font-family: sans-serif;
+	font-family: sans-serif;
+	background: #1E1E1E;
 }
 
 header {
   display: flex;
-  width: 90%;
   height: 5vh;
   margin: auto;
-  align-items: center;
+	align-items: center;
+	background: #323233;
+	color: $primary-white;
 }
 
 .logo-container {
@@ -39,7 +44,8 @@ nav {
     list-style: none;
 
     .nav-link {
-      text-decoration: none;
+			text-decoration: none;
+			color: $primary-white;
     }
   }
 }
@@ -57,7 +63,16 @@ nav {
   }
 
   .history-section {
-		flex: 1;
+    flex: 1;
+
+    .section-decs {
+      border: solid $primary-color;
+      padding: 5px;
+      color: $primary-color;
+      text-align: center;
+      font-weight: bold;
+    }
+
     ul {
       list-style-type: none;
     }
