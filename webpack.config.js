@@ -12,12 +12,24 @@ module.exports = {
 				test: /\.js$/,
 				exclude: /node_modules/,
 				use: ["babel-loader"]
+			},
+			{
+				test: /\.(png|jpe?g|gif)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]',
+						}
+					},
+				],
 			}
 		]
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "src", "index.html")
+			template: path.resolve(__dirname, "src", "index.html"),
+			favicon: "./src/public/favicon.ico"
 		})
 	]
 }
