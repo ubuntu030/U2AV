@@ -172,3 +172,12 @@ nav {
   padding: 0 5px;
   cursor: pointer;
 }
+
+@media screen and (max-width: 400px) {
+  .video-container {
+    .video-section-1 {
+      flex-direction: column;
+    }
+
+  }
+}
