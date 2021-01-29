@@ -73,6 +73,12 @@ nav {
 
 .video-container {
   display: flex;
+  flex-direction: column;
+
+  .video-section-1 {
+    display: flex;
+    flex-direction: row;
+  }
 
   .play-section {
     flex: 2;
@@ -117,6 +123,33 @@ nav {
       li {
         margin: 5px 0 0 0;
         border-bottom: solid 2px #323233;
+      }
+    }
+  }
+
+  .download-section {
+    margin: 1.2em 0 0 0;
+    color: #ddd;
+
+    .section-decs {
+      border: solid $primary-color;
+      padding: 5px;
+      color: $primary-color;
+      text-align: center;
+      font-weight: bold;
+
+    }
+
+    ul {
+      list-style: none;
+
+      li {
+        padding: 1em;
+        background: #333;
+      }
+
+      li:nth-child(odd) {
+        background: #222;
       }
     }
   }
