@@ -114,10 +114,10 @@ nav {
     }
 
     ul {
-      margin: 5px 2px 0 2px;
+      padding: 10px 5px;
+      max-height: 20em;
       list-style-type: none;
       overflow: auto;
-      height: 45vh;
       color: $primary-color;
 
       li {
@@ -178,6 +178,10 @@ nav {
   .video-container {
     .video-section-1 {
       flex-direction: column;
+
+      .history-section {
+        cursor: pointer;
+      }
     }
 
   }
