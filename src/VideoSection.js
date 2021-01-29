@@ -5,7 +5,15 @@ function VideoSection() {
 	return (
 		<main className="video-container">
 			<section className="play-section">
-				<iframe src="https://www.youtube.com/embed/2J25YR3OcQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<div>
+					<iframe src="https://www.youtube.com/embed/2J25YR3OcQ0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+				<div className="video-download-container">
+					<input type="text" className="download-input" placeholder="Video URL" />
+					<div>
+						<button className="btn-primary">Download</button>
+					</div>
+				</div>
 			</section>
 			<section className="history-section">
 				<div className="section-decs">search history</div>
