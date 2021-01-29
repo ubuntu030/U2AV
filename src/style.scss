@@ -10,6 +10,27 @@ $primary-white: #fff;
 body {
   font-family: sans-serif;
   background: #1E1E1E;
+
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #1E1E1E;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #333;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
 }
 
 header {
@@ -76,6 +97,8 @@ nav {
     ul {
       margin: 5px 2px 0 2px;
       list-style-type: none;
+      overflow: auto;
+      height: 45vh;
       color: $primary-color;
 
       li {
