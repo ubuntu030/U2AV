@@ -37,6 +37,30 @@ body {
   display: flex;
 }
 
+%ul-style {
+  ul {
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      padding: 1em;
+      background: #333;
+    }
+
+    li:nth-child(odd) {
+      background: #222;
+    }
+
+    li:hover {
+      background: #444;
+    }
+
+    li:hover:nth-child(odd) {
+      background: #444;
+    }
+  }
+}
+
 header {
   @extend %flex;
   height: 5vh;
@@ -143,30 +167,9 @@ nav {
       color: $primary-color;
       text-align: center;
       font-weight: bold;
-
     }
 
-    ul {
-      list-style: none;
-
-      li {
-        cursor: pointer;
-        padding: 1em;
-        background: #333;
-      }
-
-      li:nth-child(odd) {
-        background: #222;
-      }
-
-      li:hover {
-        background: #444;
-      }
-
-      li:hover:nth-child(odd) {
-        background: #444;
-      }
-    }
+    @extend %ul-style
   }
 }
 
@@ -180,6 +183,7 @@ nav {
   cursor: pointer;
 }
 
+// RWD for Video Section
 @media screen and (max-width: 400px) {
   .video-container {
     .video-section-1 {
@@ -219,12 +223,24 @@ nav {
   .audio-list {
     @extend %flex;
     flex: 1;
+    flex-direction: column;
     align-items: stretch;
-    background: green;
-    border: solid $primary-color;
-    padding: 5px;
-    color: $primary-color;
-    text-align: center;
-    font-weight: bold;
+    color: #ddd;
+    @extend %ul-style;
+
+    .section-decs {
+      border: solid $primary-color;
+      padding: 5px;
+      color: $primary-color;
+      text-align: center;
+      font-weight: bold;
+    }
+  }
+}
+
+// RWD for Video Section
+@media screen and (max-width: 400px) {
+  .audio-container {
+    flex-direction: column;
   }
 }

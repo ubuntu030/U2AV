@@ -12,7 +12,13 @@ function AudioSection() {
 				</div>
 			</section>
 			<section className="audio-list">
-				List
+				<div className="section-decs">Audio List</div>
+				<ul>
+					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
+					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
+					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
+					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
+				</ul>
 			</section>
 		</main>
 	)
