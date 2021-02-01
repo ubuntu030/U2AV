@@ -5,7 +5,6 @@
 }
 
 $primary-color: #00baff;
-$primary-white: #fff;
 
 body {
   font-family: sans-serif;
@@ -34,8 +33,12 @@ body {
 
 }
 
-header {
+%flex {
   display: flex;
+}
+
+header {
+  @extend %flex;
   height: 5vh;
   margin: auto;
   align-items: center;
@@ -44,7 +47,7 @@ header {
 }
 
 .logo-container {
-  display: flex;
+  @extend %flex;
   flex: 1;
 
   img {
@@ -61,7 +64,7 @@ nav {
   flex: 2;
 
   .nav-links {
-    display: flex;
+    @extend %flex;
     justify-content: space-around;
     list-style: none;
 
@@ -72,12 +75,14 @@ nav {
   }
 }
 
+// Video Section
+
 .video-container {
-  display: flex;
+  @extend %flex;
   flex-direction: column;
 
   .video-section-1 {
-    display: flex;
+    @extend %flex;
     flex-direction: row;
   }
 
@@ -90,7 +95,7 @@ nav {
     }
 
     .video-download-container {
-      display: flex;
+      @extend %flex;
     }
 
     .download-input {
@@ -185,5 +190,41 @@ nav {
       }
     }
 
+  }
+}
+
+// Audio Section
+
+.audio-container {
+  @extend %flex;
+  height: 95vh;
+  flex-direction: row;
+
+  .audio-section-1 {
+    @extend %flex;
+    flex-direction: column;
+    flex: 3;
+
+    .play-section {
+      background: burlywood;
+      flex: 1;
+    }
+
+    .editor-section {
+      background: yellow;
+      flex: 1
+    }
+  }
+
+  .audio-list {
+    @extend %flex;
+    flex: 1;
+    align-items: stretch;
+    background: green;
+    border: solid $primary-color;
+    padding: 5px;
+    color: $primary-color;
+    text-align: center;
+    font-weight: bold;
   }
 }
