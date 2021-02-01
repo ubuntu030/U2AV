@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from "react-router-dom";
 // import U2AVimg from "./public/U2AV.png";
 
 function Header() {
@@ -10,11 +11,12 @@ function Header() {
 			</div>
 			<nav>
 				<ul className="nav-links">
-					<li><a className="nav-link" href="#">Video</a></li>
-					<li><a className="nav-link" href="#">Aduio</a></li>
+					<li><Link to="/" className="nav-link">Video</Link></li>
+					<li><Link to="/audio" className="nav-link">Aduio</Link></li>
 				</ul>
 			</nav>
 		</header>
+
 	)
 }
 
