@@ -14,7 +14,18 @@ module.exports = {
 				use: ["babel-loader"]
 			},
 			{
-				test: /\.(png|jpe?g|gif)$/i,
+				test: /\.(png|jpe?g|gif|ico)$/i,
+				use: [
+					{
+						loader: 'file-loader',
+						options: {
+							name: '[name].[ext]',
+						}
+					},
+				],
+			},
+			{
+				test: /\.(ogg|mp3|wav|mpe?g|mov|mp4)$/i,
 				use: [
 					{
 						loader: 'file-loader',
