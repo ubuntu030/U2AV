@@ -10,6 +10,7 @@ $primary-white: #fff;
 body {
   font-family: sans-serif;
   background: #1E1E1E;
+  color: #fff;
 
   /* width */
   ::-webkit-scrollbar {
@@ -39,7 +40,7 @@ header {
   margin: auto;
   align-items: center;
   background: #323233;
-  color: $primary-white;
+  color: #fff;
 }
 
 .logo-container {
@@ -66,7 +67,7 @@ nav {
 
     .nav-link {
       text-decoration: none;
-      color: $primary-white;
+      color: #fff;
     }
   }
 }
