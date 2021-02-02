@@ -130,6 +130,10 @@ nav {
       height: 3em;
       padding: 0px 5px;
     }
+
+    .btn-group {
+      @extend %flex
+    }
   }
 
   .history-section {
