@@ -11,7 +11,8 @@ function VideoSection() {
 					</div>
 					<div className="video-download-container">
 						<input type="text" className="download-input" placeholder="Video URL" />
-						<div>
+						<div className="btn-group">
+							<button className="btn-primary">Search</button>
 							<button className="btn-primary">Download</button>
 						</div>
 					</div>
