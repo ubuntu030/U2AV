@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { render } from "react-dom";
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
 import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from './components/Header';
@@ -11,9 +12,12 @@ import rootReducer from "./reducers";
 
 import "./style.scss";
 
+// redux store
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const middlewares = [thunk];
 const store = createStore(
 	rootReducer,
-	window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+	composeEnhancers(applyMiddleware(...middlewares))
 );
 
 function App() {
