@@ -22,22 +22,20 @@ const store = createStore(
 
 function App() {
 	return (
-		<Provider store={store}>
-			<Router>
-				<Header />
-				<Switch>
-					<Route path="/" exact>
-						<VideoSection />
-					</Route>
-					<Route path="/audio">
-						<AudioSection />
-					</Route>
+		<Router>
+			<Header />
+			<Switch>
+				<Route path="/" exact>
+					<VideoSection />
+				</Route>
+				<Route path="/audio">
+					<AudioSection />
+				</Route>
 
-				</Switch>
-			</Router>
-		</Provider>
+			</Switch>
+		</Router>
 	)
 
 }
 
-render(<App />, document.getElementById("root"));
+render(<Provider store={store}><App /></Provider>, document.getElementById("root"));
