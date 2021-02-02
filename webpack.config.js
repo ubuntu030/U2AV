@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
@@ -11,7 +12,7 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: ["babel-loader"]
+				use: ["babel-loader", "source-map-loader"]
 			},
 			{
 				test: /\.(png|jpe?g|gif|ico)$/i,
@@ -37,10 +38,12 @@ module.exports = {
 			}
 		]
 	},
+	devtool: false,
 	plugins: [
 		new HtmlWebpackPlugin({
 			template: path.resolve(__dirname, "src", "index.html"),
 			favicon: "./src/public/favicon.ico"
-		})
+		}),
+		new webpack.SourceMapDevToolPlugin({})
 	]
 }
