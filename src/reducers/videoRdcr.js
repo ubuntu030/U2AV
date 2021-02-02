@@ -1,3 +1,9 @@
+import {
+	FETCH_VIDEO_PADDING,
+	FETCH_VIDEO_SUCCESS,
+	FETCH_VIDEO_ERROR
+} from "../actions";
+
 const initialState = {
 	"search_history": [{
 		"id": "xxx",
@@ -16,9 +22,11 @@ const initialState = {
 
 const videoReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'ADD_HISTORY_ITEM':
+		case FETCH_VIDEO_PADDING:
 			return state;
-		case 'DOWNLOAD_LIST':
+		case 'FETCH_VIDEO_SUCCESS':
+			return state;
+		case 'FETCH_VIDEO_ERROR':
 			return state;
 		default:
 			return state;
