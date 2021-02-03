@@ -7,6 +7,7 @@ const PORT = 3000;
 
 const downloadRoute = require('./downloadRoute');
 const getInfoRoute = require('./getInfoRoute');
+const getMetaDataRoute = require('./getMetaDataRoute');
 // 處理跨域請求
 app.use(cors());
 app.use(express.json());
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use('/getInfo', getInfoRoute);
 // 下載影片
 app.use('/download', downloadRoute);
+// META data of media
+app.use('/getMeta', getMetaDataRoute);
 
 app.get('/', (req, res) => {
 	res.end();
