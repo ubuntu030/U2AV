@@ -39,7 +39,7 @@ function VideoSection() {
 				headers: {
 					'content-type': 'application/json'
 				}
-			}));
+			})).json();
 			dispatch(downloadVideoSuccess(result));
 		} catch (error) {
 			console.log('[downloadVideo] err:', error);
@@ -68,7 +68,7 @@ function VideoSection() {
 				<section className="history-section">
 					<div className="section-decs">search history</div>
 					<ul>
-						{search_history.map(item => <li>{item.title}</li>)}
+						{search_history.map(item => <li key={item.id}>{item.title}</li>)}
 					</ul>
 				</section>
 			</div>
@@ -76,10 +76,7 @@ function VideoSection() {
 			<section className="download-section">
 				<div className="section-decs">Download list</div>
 				<ul>
-					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
-					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
-					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
-					<li>喬瑟與虎與魚群『主題曲』 Eve - 蒼のワルツ (蒼之華爾茲)【中日歌詞】</li>
+					{download_list.map(item => <li key={item.id}>{item.title}</li>)}
 				</ul>
 			</section>
 		</main>
