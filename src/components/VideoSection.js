@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoSuccess, downloadVideoError } from "../actions";
+import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoPadding, downloadVideoSuccess, downloadVideoError } from "../actions";
 
 function VideoSection() {
 	const [url, setUrl] = useState('');
-	const { search_history, download_list, iframe_loading } = useSelector(state => state.videoReducer);
+	const { search_history, download_list, iframe_loading, download_loading } = useSelector(state => state.videoReducer);
 	const dispatch = useDispatch();
 	// 取得影片資訊
 	const fetchVideoInfo = async (url) => {
@@ -32,6 +32,7 @@ function VideoSection() {
 	}
 	// 下載影片
 	const downlaodVideo = async (url) => {
+		dispatch(downloadVideoPadding());
 		try {
 			const result = await (await fetch('http://localhost:3000/download', {
 				method: 'POST',
@@ -81,6 +82,7 @@ function VideoSection() {
 				<ul>
 					{download_list.map(item => <li key={item.id}>{item.title}</li>)}
 				</ul>
+				{download_loading ? <div className="loader"></div> : null}
 			</section>
 		</main>
 	)
