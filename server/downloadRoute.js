@@ -12,9 +12,11 @@ router.post('/', async (req, res) => {
 		const { title = 'video.mp4' } = videoInfo.videoDetails;
 		// call download api
 		const stream = await ytdl.downloadFromInfo(videoInfo, { filter: 'audioandvideo', quality: 'highestvideo' })
-		stream.pipe(fs.createWriteStream(path.join(PATH_VIDEO_FOLDER, title + '.mp4')));
+		const PATH_VIDEO = path.join(PATH_VIDEO_FOLDER, title + '.mp4');
+		stream.pipe(fs.createWriteStream(PATH_VIDEO));
 		stream.on('finish', () => {
 			console.log('[downloadRoute] ok');
+			videoInfo.downloadFilePath = PATH_VIDEO;
 			res.send(videoInfo);
 		});
 	} catch (error) {
