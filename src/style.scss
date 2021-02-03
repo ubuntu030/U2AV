@@ -204,8 +204,11 @@ nav {
   }
 
   .download-section {
+    position: relative;
     margin: 1.2em 0 0 0;
     color: #ddd;
+
+    @extend %ul-style;
 
     .section-decs {
       border: solid $primary-color;
@@ -215,7 +218,13 @@ nav {
       font-weight: bold;
     }
 
-    @extend %ul-style
+    .loader {
+      @include loader-style;
+      width: 40px;
+      height: 40px;
+      margin: 10px auto;
+    }
+
   }
 }
 
