@@ -3,7 +3,7 @@ const fs = require('fs');
 const ytdl = require('ytdl-core');
 const router = require('express').Router();
 
-const PATH_VIDEO_FOLDER = path.join(__dirname, '../src/media/video');
+const PATH_VIDEO_FOLDER = path.join(__dirname, '../src/media/Video');
 
 router.post('/', async (req, res) => {
 	try {
