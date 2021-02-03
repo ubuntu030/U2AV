@@ -5,6 +5,7 @@ import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoPad
 
 function VideoSection() {
 	const [url, setUrl] = useState('');
+	const [embedUrl, setEmbedUrl] = useState('');
 	const { search_history, download_list, iframe_loading, download_loading } = useSelector(state => state.videoReducer);
 	const dispatch = useDispatch();
 	// 取得影片資訊
@@ -20,6 +21,7 @@ function VideoSection() {
 			})).json();
 			dispatch(fetchVideoSuccess(result));
 			console.log('[fetchVideoInfo] ok:', result);
+			setEmbedUrl(result.videoDetails.embed.iframeUrl);
 			return result;
 		} catch (error) {
 			console.log('[fetchVideoInfo] err:', error);
@@ -50,6 +52,33 @@ function VideoSection() {
 	const handleDownloadClick = () => {
 		downlaodVideo(url);
 	}
+	/**
+	 * 取得檔案的mata
+	 * @param {String} filePath 檔案路徑
+	 */
+	const getMeta = async (filePath) => {
+		try {
+			const result = await (await fetch('http://localhost:3000/getMeta', {
+				method: 'POST',
+				body: JSON.stringify({ filePath: filePath }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			})).json();
+			console.log('[getMeta] ok:', result);
+			console.log(result);
+		} catch (error) {
+			console.log('[getMeta] err:', error);
+		}
+	}
+	/**
+	 * 在歷史清單上點擊項目可以替換 ifram上的video
+	 * @param {String} id id of video
+	 */
+	const handleHstyItemClick = (id) => {
+		// const filtedItem = search_history.filter(item => item.id === id)[0];
+		setEmbedUrl('https://www.youtube.com/embed/' + id);
+	}
 
 	return (
 		<main className="video-container">
@@ -58,7 +87,7 @@ function VideoSection() {
 					<div className="iframe-container">
 						{iframe_loading ?
 							<div className="loader"></div>
-							: <iframe src={lastSearchEmbedUrl(search_history)} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+							: <iframe src={embedUrl} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
 						}
 					</div>
 					<div className="video-download-container">
@@ -72,7 +101,7 @@ function VideoSection() {
 				<section className="history-section">
 					<div className="section-decs">search history</div>
 					<ul>
-						{search_history.map(item => <li key={item.id}>{item.title}</li>)}
+						{search_history.map(item => <li key={item.id} onClick={() => handleHstyItemClick(item.id)}>{item.title}</li>)}
 					</ul>
 				</section>
 			</div>
@@ -80,25 +109,12 @@ function VideoSection() {
 			<section className="download-section">
 				<div className="section-decs">Download list</div>
 				<ul>
-					{download_list.map(item => <li key={item.id}>{item.title}</li>)}
+					{download_list.map(item => <li key={item.id} onClick={() => getMeta(item.downloadFilePath)}>{item.title}</li>)}
 				</ul>
 				{download_loading ? <div className="loader"></div> : null}
 			</section>
 		</main>
 	)
-}
-
-/**
- * 提出搜尋歷史的最後一筆資料的嵌入網址
- * @param {Array} search_history 
- * @return {String}
- */
-function lastSearchEmbedUrl(search_history = []) {
-	let embedUrl = '';
-	if (Array.isArray(search_history) && search_history.length > 0) {
-		embedUrl = search_history[search_history.length - 1].embed.iframeUrl;
-	}
-	return embedUrl;
 }
 
 export default VideoSection
