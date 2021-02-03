@@ -31,11 +31,12 @@ const videoReducer = (state = initialState, action) => {
 			return { ...state, download_loading: true };
 		case DOWNLOAD_VIDEO_SUCCESS:
 			var { author, embed, title, videoId: id } = action.payload.videoDetails;
+			var { downloadFilePath } = action.payload;
 			var filtedResult = state.download_list.filter(item => item.id === id);
 			if (filtedResult.length > 0) {
-				return state
+				return { ...state, download_loading: false };
 			}
-			return { ...state, download_list: [...state.download_list, { author, embed, title, id }], download_loading: false };
+			return { ...state, download_list: [...state.download_list, { author, embed, title, id, downloadFilePath }], download_loading: false };
 		case DOWNLOAD_VIDEO_ERROR:
 			return { ...state, download_loading: false };;
 		default:
