@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError } from "../actions";
+import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoSuccess, downloadVideoError } from "../actions";
 
 function VideoSection() {
 	const [url, setUrl] = useState('');
 	const { search_history, download_list } = useSelector(state => state.videoReducer);
 	const dispatch = useDispatch();
 	// 取得影片資訊
-	const fetchVideoInfo = async (url = 'https://youtu.be/xXA5StMti8c') => {
+	const fetchVideoInfo = async (url) => {
 		dispatch(fetchVideoPadding());
 		try {
 			const result = await (await fetch('http://localhost:3000/getInfo', {
@@ -16,7 +16,7 @@ function VideoSection() {
 				body: JSON.stringify({ url: url }),
 				headers: {
 					'content-type': 'application/json'
-				},
+				}
 			})).json();
 			dispatch(fetchVideoSuccess(result));
 			console.log('[fetchVideoInfo] ok:', result);
@@ -30,6 +30,25 @@ function VideoSection() {
 	const handleSearchClick = () => {
 		fetchVideoInfo(url);
 	}
+	// 下載影片
+	const downlaodVideo = async (url) => {
+		try {
+			const result = await (await fetch('http://localhost:3000/download', {
+				method: 'POST',
+				body: JSON.stringify({ url: url }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			}));
+			dispatch(downloadVideoSuccess(result));
+		} catch (error) {
+			console.log('[downloadVideo] err:', error);
+			dispatch(downloadVideoError(error));
+		}
+	}
+	const handleDownloadClick = () => {
+		downlaodVideo(url);
+	}
 
 	return (
 		<main className="video-container">
@@ -42,7 +61,7 @@ function VideoSection() {
 						<input type="text" onChange={e => setUrl(e.target.value)} className="download-input" placeholder="Video URL" value={url} />
 						<div className="btn-group">
 							<button onClick={handleSearchClick} className="btn-primary">Search</button>
-							<button className="btn-primary">Download</button>
+							<button onClick={handleDownloadClick} className="btn-primary">Download</button>
 						</div>
 					</div>
 				</section>
