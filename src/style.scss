@@ -61,6 +61,20 @@ body {
   }
 }
 
+@mixin loader-style {
+  // loading style
+  border: 8px solid #323233;
+  /* Light grey */
+  border-top: 8px solid #3498db;
+  // border-right: 8px solid #3498db;
+  // border-bottom: 8px solid #3498db;
+  /* Blue */
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1.5s linear infinite;
+}
+
 header {
   @extend %flex;
   height: 5vh;
@@ -113,10 +127,36 @@ nav {
   .play-section {
     flex: 2;
 
-    iframe {
-      width: 100%;
-      height: 50vh;
+    .iframe-container {
+      position: relative;
+
+      iframe {
+        width: 100%;
+        height: 50vh;
+      }
+
+      .loader {
+        @include loader-style;
+        position: absolute;
+        left: 50%;
+        margin-left: -50px;
+        top: 50%;
+        margin-top: -50px;
+      }
+
     }
+
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
 
     .video-download-container {
       @extend %flex;
