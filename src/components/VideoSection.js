@@ -5,7 +5,7 @@ import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoSuc
 
 function VideoSection() {
 	const [url, setUrl] = useState('');
-	const { search_history, download_list } = useSelector(state => state.videoReducer);
+	const { search_history, download_list, iframe_loading } = useSelector(state => state.videoReducer);
 	const dispatch = useDispatch();
 	// 取得影片資訊
 	const fetchVideoInfo = async (url) => {
@@ -54,8 +54,11 @@ function VideoSection() {
 		<main className="video-container">
 			<div className="video-section-1">
 				<section className="play-section">
-					<div>
-						<iframe src={lastSearchEmbedUrl(search_history)} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+					<div className="iframe-container">
+						{iframe_loading ?
+							<div className="loader"></div>
+							: <iframe src={lastSearchEmbedUrl(search_history)} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+						}
 					</div>
 					<div className="video-download-container">
 						<input type="text" onChange={e => setUrl(e.target.value)} className="download-input" placeholder="Video URL" value={url} />
