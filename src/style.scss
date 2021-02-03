@@ -212,6 +212,20 @@ nav {
 
     @extend %ul-style;
 
+    ul {
+      li {
+        @extend %flex;
+
+        p {
+          align-self: center;
+        }
+
+        button {
+          margin-left: auto;
+        }
+      }
+    }
+
     .section-decs {
       border: solid $primary-color;
       padding: 5px;
@@ -234,6 +248,16 @@ nav {
   background: transparent;
   color: $primary-color;
   border: solid 2px $primary-color;
+  height: 3em;
+  width: 9em;
+  padding: 0 5px;
+  cursor: pointer;
+}
+
+.btn-gray {
+  background: transparent;
+  color: #888;
+  border: solid 2px #888;
   height: 3em;
   width: 9em;
   padding: 0 5px;
