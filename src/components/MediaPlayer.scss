@@ -21,8 +21,9 @@
 
   .wavesurfer-container {
     grid-area: b1;
-    background: lightseagreen;
     @extend %flex;
+    background: lightseagreen;
+    background: #333;
 
     .wavesurfer-player {
       flex: 1;
@@ -37,6 +38,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    background: #333;
+    font-weight: bold;
 
     .now {
       font-size: xx-large;
@@ -44,16 +47,18 @@
 
     .total {
       font-size: large;
+      color: #777;
     }
   }
 
   .media-detail {
     grid-area: b3;
-    background: lightskyblue;
     @extend %flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background: #333;
+    border-top: 3px solid #444;
 
     .title {
       font-size: xx-large;
@@ -65,16 +70,22 @@
   }
 
   .control-bar {
+
     grid-area: b4;
     background: lightsteelblue;
     @extend %flex;
     align-content: space-around;
     justify-items: center;
     align-items: center;
+    border-top: 3px solid #000;
+    background: #1E1E1E;
+
     div {
       @extend %flex;
       flex: 1;
       justify-content: center;
+      border-left: 1px solid #000;
+      border-right: 1px solid #000;
     }
   }
 }
