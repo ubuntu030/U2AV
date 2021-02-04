@@ -300,16 +300,19 @@ nav {
     "b2 b3";
 
   .audio-player {
+    @extend %flex;
     grid-area: b1;
     background: lightcoral;
   }
 
   .audio-editor {
+    @extend %flex;
     grid-area: b2;
     background: lightgoldenrodyellow;
   }
 
   .audio-list {
+    @extend %flex;
     grid-area: b3;
     background: lightseagreen;
   }
