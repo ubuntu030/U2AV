@@ -1,6 +1,7 @@
 /**
  * ACTION TYPE
  */
+// video
 export const FETCH_VIDEO_PADDING = 'FETCH_VIDEO_PADDING';
 export const FETCH_VIDEO_SUCCESS = 'FETCH_VIDEO_SUCCESS';
 export const FETCH_VIDEO_ERROR = 'FETCH_VIDEO_ERROR';
@@ -10,6 +11,10 @@ export const DOWNLOAD_VIDEO_ERROR = 'DOWNLOAD_VIDEO_ERROR';
 export const CONVERT_VIDEO_PADDING = 'CONVERT_VIDEO_PADDING';
 export const CONVERT_VIDEO_SUCCESS = 'CONVERT_VIDEO_SUCCESS';
 export const CONVERT_VIDEO_ERROR = 'CONVERT_VIDEO_ERROR';
+// audio
+export const FETCH_AUDIOS_PADDING = 'FETCH_AUDIO_PADDING';
+export const FETCH_AUDIOS_SUCCESS = 'FETCH_AUDIO_SUCCESS';
+export const FETCH_AUDIOS_ERROR = 'FETCH_AUDIO_ERROR';
 
 /**
  * VIDEO ACTION
@@ -67,5 +72,23 @@ export const convertVideoError = ({ id, error }) => {
 	return {
 		type: CONVERT_VIDEO_ERROR,
 		payload: { id, error }
+	}
+}
+
+export const fetchAudiosPadding = () => {
+	return {
+		type: FETCH_AUDIOS_PADDING
+	}
+}
+export const fetchAudiosSuccess = (list) => {
+	return {
+		type: FETCH_AUDIOS_SUCCESS,
+		payload: list
+	}
+}
+export const fetchAudiosError = (error) => {
+	return {
+		type: FETCH_AUDIOS_ERROR,
+		payload: error
 	}
 }
