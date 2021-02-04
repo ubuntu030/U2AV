@@ -8,6 +8,7 @@ const PORT = 3000;
 const downloadRoute = require('./downloadRoute');
 const getInfoRoute = require('./getInfoRoute');
 const getMetaDataRoute = require('./getMetaDataRoute');
+const convertRoute = require('./convertRoute');
 // 處理跨域請求
 app.use(cors());
 app.use(express.json());
@@ -17,6 +18,8 @@ app.use('/getInfo', getInfoRoute);
 app.use('/download', downloadRoute);
 // META data of media
 app.use('/getMeta', getMetaDataRoute);
+// 影像轉音頻
+app.use('/convert', convertRoute);
 
 app.get('/', (req, res) => {
 	res.end();
