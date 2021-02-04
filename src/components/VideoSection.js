@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoPadding, downloadVideoSuccess, downloadVideoError } from "../actions";
+import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoPadding, downloadVideoSuccess, downloadVideoError, convertVideoPadding, convertVideoSuccess, convertVideoError } from "../actions";
 
 function VideoSection() {
 	const [url, setUrl] = useState('');
@@ -45,7 +45,7 @@ function VideoSection() {
 			})).json();
 			dispatch(downloadVideoSuccess(result));
 		} catch (error) {
-			console.log('[downloadVideo] err:', error);
+			console.error('[downloadVideo] err:', error);
 			dispatch(downloadVideoError(error));
 		}
 	}
@@ -68,7 +68,7 @@ function VideoSection() {
 			console.log('[getMeta] ok:', result);
 			console.log(result);
 		} catch (error) {
-			console.log('[getMeta] err:', error);
+			console.error('[getMeta] err:', error);
 		}
 	}
 	/**
@@ -76,8 +76,30 @@ function VideoSection() {
 	 * @param {String} id id of video
 	 */
 	const handleHstyItemClick = (id) => {
-		// const filtedItem = search_history.filter(item => item.id === id)[0];
 		setEmbedUrl('https://www.youtube.com/embed/' + id);
+	}
+	/**
+	 * 轉換路徑下的影片成音訊
+	 * @param {String} id
+	 * @param {String} title
+	 * @param {String} videoPath
+	 */
+	const convertVideo = async ({ id, title, videoPath }) => {
+		dispatch(convertVideoPadding(id));
+		try {
+			const result = await (await fetch('http://localhost:3000/convert', {
+				method: 'POST',
+				body: JSON.stringify({ id, title, videoPath }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			})).json();
+			dispatch(convertVideoSuccess(result));
+			console.log('[convertVideo] ok:', result);
+		} catch (error) {
+			dispatch(convertVideoError({ id, error }));
+			console.error('[convertVideo] err:', error);
+		}
 	}
 
 	return (
@@ -105,11 +127,18 @@ function VideoSection() {
 					</ul>
 				</section>
 			</div>
-
 			<section className="download-section">
 				<div className="section-decs">Download list</div>
 				<ul>
-					{download_list.map(item => <li key={item.id} onClick={() => getMeta(item.downloadFilePath)}>{item.title}</li>)}
+					{
+						download_list.map(item => (
+							<li key={item.id}>
+								<p>{item.title}</p>
+								{item.converting ? <div className="loader"></div>
+									: <button className="btn-primary" onClick={() => { convertVideo({ id: item.id, title: item.title, videoPath: item.downloadFilePath }) }}>Convert</button>
+								}
+							</li>))
+					}
 				</ul>
 				{download_loading ? <div className="loader"></div> : null}
 			</section>
