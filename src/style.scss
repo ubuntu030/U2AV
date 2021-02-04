@@ -254,7 +254,7 @@ nav {
   }
 }
 
-.btn-primary {
+@mixin basic-btn {
   background: transparent;
   color: $primary-color;
   border: solid 2px $primary-color;
@@ -264,14 +264,15 @@ nav {
   cursor: pointer;
 }
 
+.btn-primary {
+  @include basic-btn()
+}
+
+
 .btn-gray {
-  background: transparent;
+  @include basic-btn();
   color: #888;
   border: solid 2px #888;
-  height: 3em;
-  width: 9em;
-  padding: 0 5px;
-  cursor: pointer;
 }
 
 // RWD for Video Section
