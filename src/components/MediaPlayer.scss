@@ -22,6 +22,12 @@
   .wavesurfer-container {
     grid-area: b1;
     background: lightseagreen;
+    @extend %flex;
+
+    .wavesurfer-player {
+      flex: 1;
+      align-self: center;
+    }
   }
 
   .run-time {
@@ -44,11 +50,32 @@
   .media-detail {
     grid-area: b3;
     background: lightskyblue;
+    @extend %flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .title {
+      font-size: xx-large;
+    }
+
+    .meta {
+      font-size: large;
+    }
   }
 
   .control-bar {
     grid-area: b4;
     background: lightsteelblue;
+    @extend %flex;
+    align-content: space-around;
+    justify-items: center;
+    align-items: center;
+    div {
+      @extend %flex;
+      flex: 1;
+      justify-content: center;
+    }
   }
 }
 
