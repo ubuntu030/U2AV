@@ -15,7 +15,7 @@ router.post('/', async (req, res) => {
 		const PATH_VIDEO = path.join(PATH_VIDEO_FOLDER, title + '.mp4');
 		stream.pipe(fs.createWriteStream(PATH_VIDEO));
 		stream.on('finish', () => {
-			console.log('[downloadRoute] ok');
+			console.log('[downloadRoute] ok:', PATH_VIDEO);
 			videoInfo.downloadFilePath = PATH_VIDEO;
 			res.send(videoInfo);
 		});
