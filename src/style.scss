@@ -312,9 +312,17 @@ nav {
   }
 
   .audio-list {
-    @extend %flex;
     grid-area: b3;
-    background: lightseagreen;
+
+    .section-decs {
+      border: solid $primary-color;
+      padding: 5px;
+      color: $primary-color;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    @extend %ul-style;
   }
 
 }
