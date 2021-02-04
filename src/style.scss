@@ -290,49 +290,99 @@ nav {
 }
 
 // Audio Section
-
 .audio-container {
-  @extend %flex;
   height: 95vh;
-  flex-direction: row;
+  display: grid;
+  grid-template-columns: 1fr 30%;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    "b1 b3"
+    "b2 b3";
 
-  .audio-section-1 {
-    @extend %flex;
-    flex-direction: column;
-    flex: 3;
+  .audio-player {
+    grid-area: b1;
+    background: lightcoral;
+  }
 
-    .play-section {
-      background: burlywood;
-      flex: 1;
-    }
-
-    .editor-section {
-      background: yellow;
-      flex: 1
-    }
+  .audio-editor {
+    grid-area: b2;
+    background: lightgoldenrodyellow;
   }
 
   .audio-list {
-    @extend %flex;
-    flex: 1;
-    flex-direction: column;
-    align-items: stretch;
-    color: #ddd;
-    @extend %ul-style;
+    grid-area: b3;
+    background: lightseagreen;
+  }
 
-    .section-decs {
-      border: solid $primary-color;
-      padding: 5px;
-      color: $primary-color;
-      text-align: center;
-      font-weight: bold;
+}
+
+// // RWD for Video Section
+@media screen and (max-width: 400px) {
+  .audio-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas:
+      "b1"
+      "b2"
+      "b3";
+
+    .audio-player {
+      height: 40vh;
+    }
+
+    .audio-editor {
+      height: 40vh;
+    }
+
+    .audio-list {
+      max-height: 15vh;
     }
   }
 }
 
-// RWD for Video Section
-@media screen and (max-width: 400px) {
-  .audio-container {
-    flex-direction: column;
-  }
-}
+
+// .audio-container {
+//   @extend %flex;
+//   height: 95vh;
+//   flex-direction: row;
+
+//   .audio-section-1 {
+//     @extend %flex;
+//     flex-direction: column;
+//     flex: 3;
+
+//     .play-section {
+//       background: burlywood;
+//       flex: 1;
+//     }
+
+//     .editor-section {
+//       background: yellow;
+//       flex: 1
+//     }
+//   }
+
+//   .audio-list {
+//     @extend %flex;
+//     flex: 1;
+//     flex-direction: column;
+//     align-items: stretch;
+//     color: #ddd;
+//     @extend %ul-style;
+
+//     .section-decs {
+//       border: solid $primary-color;
+//       padding: 5px;
+//       color: $primary-color;
+//       text-align: center;
+//       font-weight: bold;
+//     }
+//   }
+// }
+
+// // RWD for Video Section
+// @media screen and (max-width: 400px) {
+//   .audio-container {
+//     flex-direction: column;
+//   }
+// }
