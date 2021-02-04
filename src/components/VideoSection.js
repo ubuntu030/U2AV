@@ -135,7 +135,7 @@ function VideoSection() {
 							<li key={item.id}>
 								<p>{item.title}</p>
 								{item.converting ? <div className="loader"></div>
-									: <button className="btn-primary" onClick={() => { convertVideo({ id: item.id, title: item.title, videoPath: item.downloadFilePath }) }}>Convert</button>
+									: <button className={item.audioPath ? "btn-gray" : "btn-primary"} onClick={() => { convertVideo({ id: item.id, title: item.title, videoPath: item.downloadFilePath }) }}>Convert</button>
 								}
 							</li>))
 					}
