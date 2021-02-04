@@ -9,6 +9,7 @@ const downloadRoute = require('./downloadRoute');
 const getInfoRoute = require('./getInfoRoute');
 const getMetaDataRoute = require('./getMetaDataRoute');
 const convertRoute = require('./convertRoute');
+const audiosRoute = require('./audiosRoute');
 // 處理跨域請求
 app.use(cors());
 app.use(express.json());
@@ -20,6 +21,8 @@ app.use('/download', downloadRoute);
 app.use('/getMeta', getMetaDataRoute);
 // 影像轉音頻
 app.use('/convert', convertRoute);
+// 音訊清單
+app.use('/audios', audiosRoute);
 
 app.get('/', (req, res) => {
 	res.end();
