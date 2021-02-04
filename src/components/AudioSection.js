@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError } from "../actions";
 
+import MediaPlayer from "./MediaPlayer";
+
 function AudioSection() {
 	const { audio_list, list_loading } = useSelector(state => state.audioReducer);
 	const dispatch = useDispatch();
@@ -22,7 +24,7 @@ function AudioSection() {
 	return (
 		<main className="audio-container">
 			<section className="audio-player">
-				audio-player
+				<MediaPlayer />
 			</section>
 			<section className="audio-editor">
 				audio-editor
