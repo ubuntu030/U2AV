@@ -322,6 +322,11 @@ nav {
       font-weight: bold;
     }
 
+    .loader {
+      @include loader-style();
+      margin: 10px auto;
+    }
+
     @extend %ul-style;
   }
 
