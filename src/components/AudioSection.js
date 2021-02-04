@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError } from "../actions";
 
 function AudioSection() {
-	const { audio_list } = useSelector(state => state.audioReducer);
+	const { audio_list, list_loading } = useSelector(state => state.audioReducer);
 	const dispatch = useDispatch();
 	// fetch Audio list when component did mount 
 	useEffect(async () => {
@@ -38,6 +38,7 @@ function AudioSection() {
 						))
 					}
 				</ul>
+				{list_loading ? <div className="loader"></div> : null}
 			</section>
 		</main>
 	)
