@@ -39,9 +39,12 @@ const MediaPlayer = ({ play = {} }) => {
 			console.log('media loaded');
 			setTotalT(timeFormat(waveSurfer.getDuration()));
 		});
-		waveSurfer.on('audioprocess', function () {
+		waveSurfer.on('audioprocess', () => {
 			setCrntT(timeFormat(waveSurfer.getCurrentTime()));
-		})
+		});
+		waveSurfer.on('seek', () => {
+			setCrntT(timeFormat(waveSurfer.getCurrentTime()));
+		});
 		waveSurfer.on('finish', () => {
 			console.log('play finished');
 		});
