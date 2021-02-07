@@ -6,6 +6,7 @@ import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError } from "../act
 import MediaPlayer from "./MediaPlayer";
 
 function AudioSection() {
+	const [musicInfo, setMusicInfo] = useState({ title: '', meta: null });
 	const { audio_list, list_loading } = useSelector(state => state.audioReducer);
 	const dispatch = useDispatch();
 	// fetch Audio list when component did mount 
@@ -21,10 +22,14 @@ function AudioSection() {
 		}
 	}, []);
 
+	const handleItemClick = ({ title, meta }) => {
+		setMusicInfo({ title, meta });
+	}
+
 	return (
 		<main className="audio-container">
 			<section className="audio-player">
-				<MediaPlayer />
+				<MediaPlayer play={musicInfo} />
 			</section>
 			<section className="audio-editor">
 				audio-editor
@@ -33,9 +38,9 @@ function AudioSection() {
 				<div className="section-decs">Audio List</div>
 				<ul>
 					{
-						audio_list.map(title => (
-							<li key={title}>
-								{title}
+						audio_list.map(item => (
+							<li key={item.title} onClick={() => { handleItemClick(item) }}>
+								{item.title}
 							</li>
 						))
 					}
