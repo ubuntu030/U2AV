@@ -5,11 +5,13 @@ import RegionsPlugin from "wavesurfer.js/dist/plugin/wavesurfer.regions";
 
 import "./MediaPlayer.scss";
 
-const MediaPlayer = ({ list }) => {
+const MediaPlayer = ({ play = {} }) => {
 	const wavesurferRef = useRef(null);
 	const [isPlay, setIsPlay] = useState(false);
 	const [totalT, setTotalT] = useState('00:00');
 	const [crntT, setCrntT] = useState('00:00');
+	const { title, meta } = play;
+
 	const togglePlay = () => {
 		// setIsPlay(!isPlay);
 		wavesurferRef.current.playPause();
@@ -48,7 +50,12 @@ const MediaPlayer = ({ list }) => {
 		}
 	}, []);
 
-
+	let ext = '';
+	let bps = '';
+	if (meta && meta.format) {
+		ext = meta.format.format_name.toUpperCase();
+		bps = meta.format.bit_rate + " bps";
+	}
 	return (
 		<main className="media-player">
 			<section className="wavesurfer-container">
@@ -64,10 +71,12 @@ const MediaPlayer = ({ list }) => {
 			</section>
 			<section className="media-detail">
 				<div className="title">
-					title
+					{title}
 				</div>
 				<div className="meta">
-					ext
+					{
+						ext + " " + bps
+					}
 				</div>
 			</section>
 			<section className="control-bar">
