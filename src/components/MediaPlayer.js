@@ -5,9 +5,18 @@ import RegionsPlugin from "wavesurfer.js/dist/plugin/wavesurfer.regions";
 
 import "./MediaPlayer.scss";
 
-const MediaPlayer = () => {
+const MediaPlayer = ({ list }) => {
 	const wavesurferRef = useRef(null);
-
+	const [isPlay, setIsPlay] = useState(false);
+	const [totalT, setTotalT] = useState('00:00');
+	const [crntT, setCrntT] = useState('00:00');
+	const togglePlay = () => {
+		// setIsPlay(!isPlay);
+		wavesurferRef.current.playPause();
+	}
+	const handleStop = () => {
+		wavesurferRef.current.stop();
+	}
 	let waveSurfer = null;
 	useEffect(() => {
 		waveSurfer = wavesurferRef.current =
@@ -23,6 +32,20 @@ const MediaPlayer = () => {
 				// ]
 			});
 		waveSurfer.load('src/media/Audio/Mr.Children 「Brand new planet」 from “MINE”.wav');
+		waveSurferCtrl.call(this, { waveSurfer });
+		waveSurfer.on('ready', () => {
+			console.log('media loaded');
+			setTotalT(timeFormat(waveSurfer.getDuration()));
+		});
+		waveSurfer.on('audioprocess', function () {
+			setCrntT(timeFormat(waveSurfer.getCurrentTime()));
+		})
+		waveSurfer.on('finish', () => {
+			console.log('play finished');
+		});
+		return () => {
+			waveSurfer.destroy();
+		}
 	}, []);
 
 
@@ -33,10 +56,10 @@ const MediaPlayer = () => {
 			</section>
 			<section className="run-time">
 				<div className="now">
-					<p>01:25</p>
+					<p>{crntT}</p>
 				</div>
 				<div className="total">
-					<p>04:38</p>
+					<p>{totalT}</p>
 				</div>
 			</section>
 			<section className="media-detail">
@@ -49,20 +72,44 @@ const MediaPlayer = () => {
 			</section>
 			<section className="control-bar">
 				<div>
-					play/pause
+					<img className="play" src="src/public/icons/icons8-play-48.png" onClick={() => { togglePlay() }} alt="" />
+					{/* {
+						isPlay ?
+							<img className="play" src="src/public/icons/icons8-pause-48.png" onClick={() => { handlePlay() }} alt="" /> :
+							<img className="play" src="src/public/icons/icons8-play-48.png" onClick={() => { handlePlay() }} alt="" />
+					} */}
 				</div>
 				<div>
-					stop
+					<img className="stop" src="src/public/icons/icons8-stop-48.png" onClick={() => { handleStop() }} alt="" />
 				</div>
 				<div>
-					forward
+					<img className="previous" src="src/public/icons/icons8-skip-to-start-48.png" alt="" />
 				</div>
 				<div>
-					backward
+					<img className="next" src="src/public/icons/icons8-skip-to-start-48.png" alt="" />
+
 				</div>
 			</section>
 		</main>
 	)
+}
+
+function waveSurferCtrl({ waveSurfer }) {
+
+}
+
+function timeFormat(sec) {
+	const time = Math.round(sec);
+	let minutes = Math.floor(time / 60);
+	minutes = timeNumPrcs(minutes);
+	let seconds = time - minutes * 60;
+	seconds = timeNumPrcs(seconds);
+	return minutes + ':' + seconds;
+}
+
+function timeNumPrcs(num = 0) {
+	num = num + '';
+	return num = (num.length > 1) ? num : '0' + num;
 }
 
 export default MediaPlayer;
