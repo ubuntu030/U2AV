@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError } from "../actions";
 
 import MediaPlayer from "./MediaPlayer";
+import AudioEditor from "./AudioEditor";
 
 function AudioSection() {
 	const [musicInfo, setMusicInfo] = useState({ title: '', meta: null });
@@ -29,10 +30,10 @@ function AudioSection() {
 	return (
 		<main className="audio-container">
 			<section className="audio-player">
-				<MediaPlayer play={musicInfo} />
+				<MediaPlayer list={audio_list} play={musicInfo} />
 			</section>
 			<section className="audio-editor">
-				audio-editor
+				{/* <AudioEditor info={musicInfo} /> */}
 			</section>
 			<section className="audio-list">
 				<div className="section-decs">Audio List</div>
