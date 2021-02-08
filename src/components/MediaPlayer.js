@@ -26,6 +26,7 @@ const MediaPlayer = ({ play = {} }) => {
 		const aud = audioRef.current;
 		aud.pause();
 		aud.currentTime = 0;
+		setIsPlay(false)
 	}
 	const handleVolChange = (e) => {
 		const { value } = e.target;
