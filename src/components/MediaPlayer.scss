@@ -24,10 +24,23 @@
     @extend %flex;
     background: lightseagreen;
     background: #333;
+    align-items: center;
+
+    & audio::-webkit-media-controls-current-time-display,
+    audio::-webkit-media-controls-time-remaining-display,
+    audio::-webkit-media-controls-play-button,
+    audio::-webkit-media-controls-panel {
+      display: none;
+    }
 
     .wavesurfer-player {
       flex: 1;
       align-self: center;
+    }
+
+    progress {
+      flex: 1;
+      margin: 10px;
     }
   }
 
@@ -72,7 +85,6 @@
   }
 
   .control-bar {
-
     grid-area: b4;
     background: lightsteelblue;
     @extend %flex;
@@ -95,6 +107,14 @@
 
         &.next {
           transform: rotate(180deg);
+        }
+      }
+
+      &.volume-container {
+
+        // overflow: hidden;
+        .volume {
+          width: 100%;
         }
       }
     }
