@@ -348,6 +348,14 @@ nav {
     }
 
     @extend %ul-style;
+
+    ul {
+      li {
+        &.selected {
+          color: $primary-color;
+        }
+      }
+    }
   }
 
 }

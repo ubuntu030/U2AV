@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
-import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError } from "../actions";
+import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError, selectedAudio } from "../actions";
 
 import MediaPlayer from "./MediaPlayer";
 import AudioEditor from "./AudioEditor";
@@ -25,6 +25,7 @@ function AudioSection() {
 
 	const handleItemClick = ({ title, meta }) => {
 		setMusicInfo({ title, meta });
+		dispatch(selectedAudio(title));
 	}
 
 	return (
@@ -40,7 +41,7 @@ function AudioSection() {
 				<ul>
 					{
 						audio_list.map(item => (
-							<li key={item.title} onClick={() => { handleItemClick(item) }}>
+							<li key={item.title} className={item.selected ? "selected" : ""} onClick={() => { handleItemClick(item) }}>
 								{item.title}
 							</li>
 						))
