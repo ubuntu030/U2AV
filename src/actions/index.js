@@ -15,6 +15,7 @@ export const CONVERT_VIDEO_ERROR = 'CONVERT_VIDEO_ERROR';
 export const FETCH_AUDIOS_PADDING = 'FETCH_AUDIO_PADDING';
 export const FETCH_AUDIOS_SUCCESS = 'FETCH_AUDIO_SUCCESS';
 export const FETCH_AUDIOS_ERROR = 'FETCH_AUDIO_ERROR';
+export const SELECTED_AUDIO = 'SELECTED_AUDIO';
 
 /**
  * VIDEO ACTION
@@ -74,7 +75,7 @@ export const convertVideoError = ({ id, error }) => {
 		payload: { id, error }
 	}
 }
-
+// FETCH AUDIO LIST
 export const fetchAudiosPadding = () => {
 	return {
 		type: FETCH_AUDIOS_PADDING
@@ -90,5 +91,12 @@ export const fetchAudiosError = (error) => {
 	return {
 		type: FETCH_AUDIOS_ERROR,
 		payload: error
+	}
+}
+// SELECT LIST ITEM
+export const selectedAudio = (title) => {
+	return {
+		type: SELECTED_AUDIO,
+		payload: title
 	}
 }

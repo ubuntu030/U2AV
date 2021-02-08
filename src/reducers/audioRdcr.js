@@ -1,4 +1,9 @@
-import { FETCH_AUDIOS_PADDING, FETCH_AUDIOS_SUCCESS, FETCH_AUDIOS_ERROR } from '../actions';
+import {
+	FETCH_AUDIOS_PADDING,
+	FETCH_AUDIOS_SUCCESS,
+	FETCH_AUDIOS_ERROR,
+	SELECTED_AUDIO
+} from '../actions';
 
 const initialState = {
 	audio_list: [],
@@ -13,6 +18,11 @@ const audioReducer = (state = initialState, action) => {
 			return { ...state, audio_list: [...action.payload], list_loading: false };
 		case FETCH_AUDIOS_ERROR:
 			return { ...state, list_loading: false };
+		case SELECTED_AUDIO:
+			var list = state.audio_list.map(item => {
+				return { ...item, selected: (item.title === action.payload) ? true : false }
+			})
+			return { ...state, audio_list: [...list] };
 		default:
 			return state;
 	}
