@@ -309,6 +309,26 @@ nav {
     @extend %flex;
     grid-area: b2;
     background: lightgoldenrodyellow;
+
+    .audio-editor-container {
+      @extend %flex;
+      background: #323233;
+      padding: 10px;
+      flex: 1;
+      height: 100%;
+      flex-direction: column;
+
+      &div {
+        @extend %flex;
+      }
+
+      input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+      }
+    }
   }
 
   .audio-list {
