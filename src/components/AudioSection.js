@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError, selectedAudio } from "../actions";
+import fetchAudioList from "../actions/fetchAudioList";
 
 import MediaPlayer from "./MediaPlayer";
 import AudioEditor from "./AudioEditor";
@@ -14,11 +15,9 @@ function AudioSection() {
 	useEffect(async () => {
 		dispatch(fetchAudiosPadding());
 		try {
-			const result = await (await fetch('http://localhost:3000/audios',)).json();
-			console.log('[audio list] ok:', result);
+			const result = await fetchAudioList();
 			dispatch(fetchAudiosSuccess(result));
 		} catch (error) {
-			console.error('[audio list] err:', error);
 			dispatch(fetchAudiosError());
 		}
 	}, []);
