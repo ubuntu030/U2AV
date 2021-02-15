@@ -14,7 +14,7 @@ function AudioSection() {
 	useEffect(async () => {
 		dispatch(fetchAudiosPadding());
 		try {
-			const result = await (await fetch('http://localhost:3000/audios')).json();
+			const result = await (await fetch('http://localhost:3000/audios',)).json();
 			console.log('[audio list] ok:', result);
 			dispatch(fetchAudiosSuccess(result));
 		} catch (error) {
@@ -34,7 +34,7 @@ function AudioSection() {
 				<MediaPlayer list={audio_list} play={musicInfo} />
 			</section>
 			<section className="audio-editor">
-				{/* <AudioEditor info={musicInfo} /> */}
+				<AudioEditor info={musicInfo} />
 			</section>
 			<section className="audio-list">
 				<div className="section-decs">Audio List</div>
