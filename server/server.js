@@ -10,6 +10,7 @@ const getInfoRoute = require('./getInfoRoute');
 const getMetaDataRoute = require('./getMetaDataRoute');
 const convertRoute = require('./convertRoute');
 const audiosRoute = require('./audiosRoute');
+const editorRoute = require('./editorRoute');
 // 處理跨域請求
 app.use(cors());
 app.use(express.json());
@@ -23,6 +24,8 @@ app.use('/getMeta', getMetaDataRoute);
 app.use('/convert', convertRoute);
 // 音訊清單
 app.use('/audios', audiosRoute);
+// 音訊編輯
+app.use('/edit', editorRoute);
 
 app.get('/', (req, res) => {
 	res.end();
