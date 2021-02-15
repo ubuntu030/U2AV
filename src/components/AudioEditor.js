@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError, selectedAudio } from "../actions";
+
+import fetchAudioList from "../actions/fetchAudioList";
 
 const inputCtnStyle = {
 	display: 'flex',
@@ -8,6 +13,7 @@ const inputCtnStyle = {
 }
 
 const AudioEditor = ({ url, info }) => {
+	const dispatch = useDispatch();
 	const [newTitle, setNewTitle] = useState(info.title);
 	const [trimTime, setTrimTime] = useState({ bg: {}, ed: {} });
 
@@ -16,20 +22,31 @@ const AudioEditor = ({ url, info }) => {
 		try {
 			const result = await (await fetch('http://localhost:3000/edit', {
 				method: 'POST',
-				body: JSON.stringify({ title: newTitle, ...secObj }),
+				body: JSON.stringify({ orgTitle: info.title, title: newTitle, ...secObj }),
 				headers: {
 					'content-type': 'application/json'
 				}
 			})).json();
 			console.log('[edit] ok:', result);
-			// dispatch(fetchAudiosSuccess(result));
+			return result;
 		} catch (error) {
 			console.error('[edit] err:', error);
-			// dispatch(fetchAudiosError());
 		}
 	}
+	const fetchList = async () => {
+		dispatch(fetchAudiosPadding());
+		try {
+			const result = await fetchAudioList();
+			dispatch(fetchAudiosSuccess(result));
+		} catch (error) {
+			dispatch(fetchAudiosError());
+		}
+	}
+
 	const handleEditClick = () => {
-		editAduioRequest();
+		editAduioRequest().then(() => {
+			fetchList();
+		});
 	}
 	const handleTimeChange = (e, pos, time) => {
 		const { value } = e.target;
@@ -41,7 +58,8 @@ const AudioEditor = ({ url, info }) => {
 
 	useEffect(() => {
 		let title = (info && info.title) ? 'TRIM_' + info.title : '';
-		setNewTitle(title);
+		
+		setNewTitle(title.replace(/\.[^/.]+$/, ""));
 	}, [info]);
 
 	const { title = '' } = info;
