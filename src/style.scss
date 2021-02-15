@@ -33,6 +33,10 @@ body {
 
 }
 
+@mixin flex {
+  display: flex;
+}
+
 %flex {
   display: flex;
 }
@@ -76,7 +80,7 @@ body {
 }
 
 header {
-  @extend %flex;
+  @include flex();
   height: 5vh;
   margin: auto;
   align-items: center;
@@ -85,7 +89,7 @@ header {
 }
 
 .logo-container {
-  @extend %flex;
+  @include flex();
   flex: 1;
 
   img {
@@ -102,7 +106,7 @@ nav {
   flex: 2;
 
   .nav-links {
-    @extend %flex;
+    @include flex();
     justify-content: space-around;
     list-style: none;
 
@@ -116,11 +120,11 @@ nav {
 // Video Section
 
 .video-container {
-  @extend %flex;
+  @include flex();
   flex-direction: column;
 
   .video-section-1 {
-    @extend %flex;
+    @include flex();
     flex-direction: row;
   }
 
@@ -162,7 +166,7 @@ nav {
 
 
     .video-download-container {
-      @extend %flex;
+      @include flex();
     }
 
     .download-input {
@@ -175,7 +179,7 @@ nav {
     }
 
     .btn-group {
-      @extend %flex
+      @include flex()
     }
   }
 
@@ -213,7 +217,7 @@ nav {
 
     ul {
       li {
-        @extend %flex;
+        @include flex();
         cursor: initial;
 
         // loading for every single converting
@@ -300,27 +304,43 @@ nav {
     "b2 b3";
 
   .audio-player {
-    @extend %flex;
+    @include flex();
     grid-area: b1;
     background: lightcoral;
   }
 
   .audio-editor {
-    @extend %flex;
+    @include flex();
     grid-area: b2;
     background: lightgoldenrodyellow;
 
     .audio-editor-container {
-      @extend %flex;
+      @include flex();
       background: #323233;
       padding: 10px;
       flex: 1;
       height: 100%;
       flex-direction: column;
 
-      &div {
-        @extend %flex;
+      div {
+        @include flex();
+        margin: 5px 0 0 0;
+
+        &.time-input-ctn {
+          @include flex();
+
+          justify-content: space-around;
+          div {
+            flex-direction: column;
+            flex: 1;
+          }
+        }
+
+        &.title-input-ctn {
+          flex-direction: column;
+        }
       }
+
 
       input[type=text] {
         width: 100%;
@@ -386,12 +406,12 @@ nav {
 
 
 // .audio-container {
-//   @extend %flex;
+//   @include flex();
 //   height: 95vh;
 //   flex-direction: row;
 
 //   .audio-section-1 {
-//     @extend %flex;
+//     @include flex();
 //     flex-direction: column;
 //     flex: 3;
 
@@ -407,7 +427,7 @@ nav {
 //   }
 
 //   .audio-list {
-//     @extend %flex;
+//     @include flex();
 //     flex: 1;
 //     flex-direction: column;
 //     align-items: stretch;
