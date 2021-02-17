@@ -388,6 +388,7 @@ nav {
     ul {
       li {
         position: relative;
+        cursor: default;
         &.selected {
           color: $primary-color;
         }
@@ -395,6 +396,9 @@ nav {
           opacity: 1;
           right: 0;
           transition: opacity,right 300ms ease-in-out;
+        }
+        div {
+          cursor: pointer;
         }
         img {
           opacity: 1;
@@ -405,6 +409,7 @@ nav {
           width: 25px;
           top: 50%;
           transform: translate(0, -50%);
+          cursor: pointer;
         }
       }
     }

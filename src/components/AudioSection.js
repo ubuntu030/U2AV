@@ -65,8 +65,10 @@ function AudioSection() {
 						audio_list.map(item => {
 							title = item.title;
 							return (
-							<li key={title} className={item.selected ? "selected" : ""} onClick={() => { handleItemClick(item) }}>
-								{title}
+							<li key={title} className={item.selected ? "selected" : ""}>
+								<div onClick={() => { handleItemClick(item) }}>
+									{title}
+								</div>
 								<img onClick={()=> {handleItemDel(item.title)}} className="del-btn" src="src/public/icons/delete.png" alt="" />
 							</li>
 							)
