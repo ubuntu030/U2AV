@@ -11,6 +11,7 @@ const getMetaDataRoute = require('./getMetaDataRoute');
 const convertRoute = require('./convertRoute');
 const audiosRoute = require('./audiosRoute');
 const editorRoute = require('./editorRoute');
+const delAudioRoute = require('./delAudioRoute');
 // 處理跨域請求
 app.use(cors());
 app.use(express.json());
@@ -26,6 +27,8 @@ app.use('/convert', convertRoute);
 app.use('/audios', audiosRoute);
 // 音訊編輯
 app.use('/edit', editorRoute);
+// 刪除項目
+app.use('/delAudio', delAudioRoute);
 
 app.get('/', (req, res) => {
 	res.end();
