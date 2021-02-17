@@ -34,6 +34,16 @@ const MediaPlayer = ({ play = {} }) => {
 		aud.volume = value;
 	}
 
+	const setPlayTime = (e, time) => {
+		if (typeof time === 'number' && time !== 0) {
+			if (e.shiftKey) {
+				time *= 3;
+			}
+			const aud = audioRef.current;
+			aud.currentTime += time;
+		}
+	}
+
 	useEffect(() => {
 		const aud = audioRef.current;
 		setIsPlay(false);
@@ -91,10 +101,10 @@ const MediaPlayer = ({ play = {} }) => {
 					<img className="stop" src="src/public/icons/icons8-stop-48.png" onClick={() => { handleStop() }} alt="" />
 				</div>
 				<div>
-					<img className="previous" src="src/public/icons/icons8-skip-to-start-48.png" alt="" />
+					<img className="previous" src="src/public/icons/icons8-skip-to-start-48.png" onClick={(e) => { setPlayTime(e, -5) }} alt="" />
 				</div>
 				<div>
-					<img className="next" src="src/public/icons/icons8-skip-to-start-48.png" alt="" />
+					<img className="next" src="src/public/icons/icons8-skip-to-start-48.png" onClick={(e) => { setPlayTime(e, 5) }} alt="" />
 				</div>
 				<div className="volume-container">
 					<img className="volume-img" src="src/public/icons/icons8-sound-speaker-48.png" alt="" />
