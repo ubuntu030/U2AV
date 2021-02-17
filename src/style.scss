@@ -333,20 +333,35 @@ nav {
           div {
             flex-direction: column;
             flex: 1;
+            input {
+              padding:6px 10px;
+              margin: 0 1px;
+            }
           }
         }
 
         &.title-input-ctn {
           flex-direction: column;
         }
+        &.control-ctn {
+          flex: 1;
+          button {
+            margin: auto auto 0;
+          }
+        }
       }
 
 
-      input[type=text] {
+      input[type=text],input[type=number] {
         width: 100%;
         padding: 12px 20px;
         margin: 8px 0;
         box-sizing: border-box;
+
+        caret-color: white;
+        background: transparent;
+        color: white;
+        border: 2px solid #fff;
       }
     }
   }

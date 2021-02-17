@@ -58,7 +58,7 @@ const AudioEditor = ({ url, info }) => {
 
 	useEffect(() => {
 		let title = (info && info.title) ? 'TRIM_' + info.title : '';
-		
+
 		setNewTitle(title.replace(/\.[^/.]+$/, ""));
 	}, [info]);
 
@@ -95,9 +95,9 @@ const AudioEditor = ({ url, info }) => {
 						<label>S</label>
 					</div>
 				</div>
-				<div>
-					<button onClick={handleEditClick}>Edit</button>
-				</div>
+			</div>
+			<div className="control-ctn">
+				<button className="btn-primary" onClick={handleEditClick}>Edit</button>
 			</div>
 		</div>
 	)
