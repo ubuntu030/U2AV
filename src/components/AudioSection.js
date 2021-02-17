@@ -27,6 +27,29 @@ function AudioSection() {
 		dispatch(selectedAudio(title));
 	}
 
+	const handleItemDel = async (title) => {
+		try {
+			const result = await (await fetch('http://localhost:3000/delAudio', {
+				method: 'POST',
+				body: JSON.stringify({ title: title }),
+				headers: {
+					'content-type': 'application/json'
+				}
+			})).json();
+			dispatch(fetchAudiosPadding());
+			try {
+				const result = await fetchAudioList();
+				dispatch(fetchAudiosSuccess(result));
+			} catch (error) {
+				dispatch(fetchAudiosError());
+			}
+			console.log('[delAudio] ok:', result);
+		} catch (error) {
+			console.log('[delAudio] err:', error);
+		}
+	}
+
+	let title = '';
 	return (
 		<main className="audio-container">
 			<section className="audio-player">
@@ -39,11 +62,15 @@ function AudioSection() {
 				<div className="section-decs">Audio List</div>
 				<ul>
 					{
-						audio_list.map(item => (
-							<li key={item.title} className={item.selected ? "selected" : ""} onClick={() => { handleItemClick(item) }}>
-								{item.title}
+						audio_list.map(item => {
+							title = item.title;
+							return (
+							<li key={title} className={item.selected ? "selected" : ""} onClick={() => { handleItemClick(item) }}>
+								{title}
+								<img onClick={()=> {handleItemDel(item.title)}} className="del-btn" src="src/public/icons/delete.png" alt="" />
 							</li>
-						))
+							)
+						})
 					}
 				</ul>
 				{list_loading ? <div className="loader"></div> : null}
