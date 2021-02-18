@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { fetchVideoPadding, fetchVideoSuccess, fetchVideoError, downloadVideoPadding, downloadVideoSuccess, downloadVideoError, convertVideoPadding, convertVideoSuccess, convertVideoError } from "../actions";
+import openFolderReq from '../actions/openFolderReq';
 
 function VideoSection() {
 	const [url, setUrl] = useState('');
@@ -128,7 +129,7 @@ function VideoSection() {
 				</section>
 			</div>
 			<section className="download-section">
-				<div className="section-decs">Download list</div>
+				<div className="section-decs" onClick={()=> openFolderReq('video')}>Download list</div>
 				<ul>
 					{
 						download_list.map(item => (
