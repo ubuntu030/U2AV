@@ -16,7 +16,7 @@ router.post('/', (req, res) => {
             res.send({error: error});
             return;
           }
-          console.error(`[openFolder] ok:,${whichFolder}`);
+          console.log(`[openFolder] ok:,${whichFolder}`);
           res.send({
               state:'ok'
           });
