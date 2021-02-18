@@ -1,3 +1,7 @@
+/**
+ * 開啟影片或音頻資料夾
+ * @param {String} type audio || video 
+ */
 const openFolderReq = async (type ='audio') => {
     try {
         const result = await (await fetch('http://localhost:3000/openFolder', {
