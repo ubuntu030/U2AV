@@ -436,6 +436,11 @@ nav {
 
     .audio-editor {
       height: 35vh;
+      .audio-editor-container {
+        .title-ctn {
+          display: none;
+        }
+      }
     }
 
     .audio-list {

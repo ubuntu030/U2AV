@@ -65,7 +65,7 @@ const AudioEditor = ({ url, info }) => {
 	const { title = '' } = info;
 	return (
 		<div className="audio-editor-container">
-			<div>
+			<div className="title-ctn">
 				<h3>{(title) ? title : 'Trim audio~'}</h3>
 			</div>
 			<div className="title-input-ctn">
