@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchAudiosPadding, fetchAudiosSuccess, fetchAudiosError, selectedAudio } from "../actions";
 import fetchAudioList from "../actions/fetchAudioList";
+import openFolderReq from '../actions/openFolderReq';
 
 import MediaPlayer from "./MediaPlayer";
 import AudioEditor from "./AudioEditor";
@@ -49,6 +50,7 @@ function AudioSection() {
 		}
 	}
 
+
 	let title = '';
 	return (
 		<main className="audio-container">
@@ -59,7 +61,7 @@ function AudioSection() {
 				<AudioEditor info={musicInfo} />
 			</section>
 			<section className="audio-list">
-				<div className="section-decs">Audio List</div>
+				<div className="section-decs" onClick={()=> {openFolderReq()}}>Audio List</div>
 				<ul>
 					{
 						audio_list.map(item => {
