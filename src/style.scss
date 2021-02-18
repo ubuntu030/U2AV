@@ -80,6 +80,33 @@ body {
   animation: spin 1.5s linear infinite;
 }
 
+.slide-btn {
+  z-index: 1;
+  transition: color 300ms ease-in-out;
+  transition: border 300ms ease-in-out;
+  &:hover {
+    color: #fff !important;
+    border: solid #00bbff00 !important;
+  }
+}
+.slide-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: #c7120d;
+  z-index: -1;
+  transition: transform 300ms ease-in-out;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+.slide-btn:hover::before,
+.slide-btn:focus::before {
+  transform: scaleX(1);
+}
+
 header {
   @include flex();
   height: 5vh;
@@ -215,6 +242,10 @@ nav {
     margin: 1.2em 0 0 0;
     color: #ddd;
     @extend %ul-style;
+
+    .section-decs{
+      cursor: pointer;
+    }
 
     ul {
       li {
@@ -376,6 +407,8 @@ nav {
       color: $primary-color;
       text-align: center;
       font-weight: bold;
+      cursor: pointer;
+      position: relative;
     }
 
     .loader {

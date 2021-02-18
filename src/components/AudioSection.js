@@ -61,7 +61,7 @@ function AudioSection() {
 				<AudioEditor info={musicInfo} />
 			</section>
 			<section className="audio-list">
-				<div className="section-decs" onClick={()=> {openFolderReq()}}>Audio List</div>
+				<div className="section-decs slide-btn" onClick={()=> {openFolderReq()}}>Audio List</div>
 				<ul>
 					{
 						audio_list.map(item => {

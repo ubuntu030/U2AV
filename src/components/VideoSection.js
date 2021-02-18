@@ -129,7 +129,7 @@ function VideoSection() {
 				</section>
 			</div>
 			<section className="download-section">
-				<div className="section-decs" onClick={()=> openFolderReq('video')}>Download list</div>
+				<div className="section-decs slide-btn" onClick={()=> openFolderReq('video')}>Download list</div>
 				<ul>
 					{
 						download_list.map(item => (
